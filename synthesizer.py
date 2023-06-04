@@ -9,14 +9,17 @@ RATE= 44100
 bufsize = 256
 pitch = []
 
+# 音階の周波数を定義
 key_name = ["z","s","x","d","c","v","g","b","h","n","j","m",",","l",".",";","/","q","2","w","3","e","r","5","t","6","y","7","u","i","9","o","0","p","[","=","]", "\\"]
 key_diff = [-9 ,-8 ,-7 ,-6 ,-5 ,-4 ,-3 ,-2 ,-1 , 0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 3 , 4 , 5 , 6 , 7 , 8 , 9 ,10 , 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ,21 ,22, 24]
 key_frequency = {}
 for key,diff in zip(key_name,key_diff):
   key_frequency[key] = 440 * math.pow(2,diff * (1/12.0))
 
+
 x=np.arange(bufsize)
-pos = 0
+pos = 0 #位相（波形を保つための変数）
+# 波形を生成する関数
 def synthesize():
     global pos
     wave = np.zeros(bufsize)
@@ -59,7 +62,7 @@ def synthesize():
 
     return wave
 
-playing = 1
+# 音を再生する関数
 def audioplay():
     print ("Start Streaming")
     p=pyaudio.PyAudio()
@@ -71,13 +74,12 @@ def audioplay():
 
     while stream.is_active():
         buf = synthesize()
-        buf = (buf * 32768.0).astype(np.int16)#16ビット整数に変換
+        buf = (buf * 32768.0).astype(np.int16)
         buf = struct.pack("h" * len(buf), *buf)
         stream.write(buf)
-        if playing == 0:
-            break
 
 
+# キー入力を受け付ける関数（キーを離したとき）
 def on_release(key):
     global pitch
     try:
@@ -86,6 +88,7 @@ def on_release(key):
     except AttributeError:
         pass
 
+# キー入力を受け付ける関数（キーを押したとき）
 def on_press(key):
     global pitch
     try:
