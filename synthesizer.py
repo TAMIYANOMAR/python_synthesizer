@@ -23,7 +23,11 @@ pos = 0 #位相（波形を保つための変数）
 def synthesize():
     global pos
     wave = np.zeros(bufsize)
-    for i in pitch:
+
+    if len(pitch) == 0: #リストに音階が入っていないときは何もしない
+        return wave
+
+    for i in pitch: #リストに追加されている音階を合成
         t = i * (x+pos) / RATE
         t = t - np.trunc(t)
         
@@ -45,8 +49,7 @@ def synthesize():
         wave -= np.sin(1.2*np.pi*t*t) * 0.124
         wave += np.sin(0.54*np.pi*t*t) * 0.138
 
-    wave_max = np.max(wave)
-    print(wave_max)
+    # 音量が大きくなりすぎないように調整
     if len(pitch) > 4:
         volume = 0.1 * 3 / 6
     else:
@@ -54,17 +57,10 @@ def synthesize():
     wave = wave * volume
     pos += bufsize
 
-    if len(pitch) == 0:
-        velosity = 0.0
-    else:
-        velosity = 1.0
-    wave = velosity * wave
-
     return wave
 
 # 音を再生する関数
 def audioplay():
-    print ("Start Streaming")
     p=pyaudio.PyAudio()
     stream=p.open(format = pyaudio.paInt16,
             channels = 1,
@@ -84,7 +80,7 @@ def on_release(key):
     global pitch
     try:
         if key.char in key_frequency:  
-            pitch.remove(key_frequency[key.char])
+            pitch.remove(key_frequency[key.char]) #リストに入っている音階を削除
     except AttributeError:
         pass
 
@@ -93,11 +89,21 @@ def on_press(key):
     global pitch
     try:
         if key.char in key_frequency and key_frequency[key.char] not in pitch:
-            pitch.append(key_frequency[key.char])
+            pitch.append(key_frequency[key.char]) #リストに音階を追加
     except AttributeError:
         pass
 
-if __name__ == "__main__": 
+def print_greeting():
+    print(" ####                ##    ##                  ##")
+    print("##  ##               ##    ##")
+    print("##     ##  ## #####  ##### ##      ####   #### ## #####  ####  #####")
+    print(" ####  ##  ## ##  ## ##    #####  ##  ## ##    ##    ## ##  ## ##  ##")
+    print("    ##  ##### ##  ## ##    ##  ## ###### ####  ##   ##  ###### ##")
+    print("##  ##    ##  ##  ## ## ## ##  ## ##        ## ##  ##   ##     ##")
+    print("####   #####  ##  ##  ###  ##  ##  ##### ####  ## #####  ##### ##")
+
+if __name__ == "__main__":
+    print_greeting()
     thread = threading.Thread(target=audioplay)
     thread.start()
     with keyboard.Listener(on_release=on_release,on_press=on_press) as listener:
