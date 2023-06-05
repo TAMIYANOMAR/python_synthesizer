@@ -10,6 +10,7 @@ bufsize = 256
 mode = 0
 shift = 0
 pitch = []
+key_board = 0
 
 # 音階の周波数を定義
 key_name =        ["z","s","x","d","c","v","g","b","h","n","j","m",",","l",".",";","/","q","2","w","3","e","r","5","t","6","y","7","u","i","9","o","0","p","[","=","]","\\"]
@@ -111,11 +112,18 @@ def print_greeting():
     mode = int(input())
     print("Input number to shift pitch")
     shift = int(input())
+    print("Input number to select keyboard (0:US 1:JP)")
+    key_board = int(input())
+
 
 def create_pitch():
-    global key_frequency,key_name,key_diff,shift
-    for key,diff in zip(key_name,key_diff):
-        key_frequency[key] = 440 * math.pow(2,(diff + shift) * (1/12.0))
+    global key_frequency,key_name,key_diff,shift,key_name_for_jp,key_board
+    if key_board == 0:
+        for key,diff in zip(key_name,key_diff):
+            key_frequency[key] = 440 * math.pow(2,(diff + shift) * (1/12.0))
+    else:
+        for key,diff in zip(key_name_for_jp,key_diff):
+            key_frequency[key] = 440 * math.pow(2,(diff + shift) * (1/12.0))
 
 if __name__ == "__main__":
     print_greeting()
