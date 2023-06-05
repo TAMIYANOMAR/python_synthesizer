@@ -83,6 +83,8 @@ def audioplay():
 def on_release(key):
     global pitch
     try:
+        if key.char == 'A':
+            exit()
         if key.char in key_frequency:  
             pitch.remove(key_frequency[key.char]) #リストに入っている音階を削除
     except AttributeError:
@@ -98,7 +100,7 @@ def on_press(key):
         pass
 
 def print_greeting():
-    global mode , shift
+    global mode , shift , key_board
     print(" ####")
     print("##  ##               ##    ##")
     print("##     ##  ## #####  ##### ##      ####   #### ## #####  ####  #####")
