@@ -82,9 +82,7 @@ def audioplay():
 # キー入力を受け付ける関数（キーを離したとき）
 def on_release(key):
     global pitch
-    try:
-        if key.char == 'A':
-            exit()
+    try:  
         if key.char in key_frequency:  
             pitch.remove(key_frequency[key.char]) #リストに入っている音階を削除
     except AttributeError:
@@ -92,8 +90,14 @@ def on_release(key):
 
 # キー入力を受け付ける関数（キーを押したとき）
 def on_press(key):
-    global pitch
+    global pitch , shift
     try:
+        if key.char == 'A':
+            shift -= 1
+            create_pitch()
+        elif key.char == 'D':
+            shift += 1
+            create_pitch()
         if key.char in key_frequency and key_frequency[key.char] not in pitch:
             pitch.append(key_frequency[key.char]) #リストに音階を追加
     except AttributeError:
@@ -116,6 +120,9 @@ def print_greeting():
     shift = int(input())
     print("Input number to select keyboard (0:US 1:JP)")
     key_board = int(input())
+    print("Start synthesizer : Press \"shift + a\" to down pitch , \"shift + d\" to up pitch")
+    print("")
+
 
 
 def create_pitch():
