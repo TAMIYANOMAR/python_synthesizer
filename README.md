@@ -1,4 +1,4 @@
-# == Python-Synthesizer ==
+# Python-Synthesizer-CLI
 - キー配置はピアノと似たようなイメージ
 - exeファイル => /dist 
 - テンポ
