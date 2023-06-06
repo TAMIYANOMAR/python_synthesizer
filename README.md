@@ -1,6 +1,7 @@
 # Python-Synthesizer-CLI
 - キー配置はピアノと似たようなイメージ
-- exeファイル => /dist 
+- exeファイル
+    - /dist 
 - テンポ
 - キーコンフィグ(0:US,1:JP)
 - 音(0:normalモード,1:8ビットモード)
