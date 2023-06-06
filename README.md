@@ -13,3 +13,4 @@
     - eを入力すると記録を終了
 - リプレイモード
     - 利用可能ファイルが表示されるので数字で選択   
+![image](https://github.com/TAMIYANOMAR/python_synthesizer/assets/59043309/3a6ed3fa-7fc8-4037-a6b5-223071f851b3)
