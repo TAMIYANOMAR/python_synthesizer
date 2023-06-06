@@ -1,5 +1,6 @@
 ![image](https://github.com/TAMIYANOMAR/python_synthesizer/assets/59043309/4bf297e0-6311-4281-ae43-53254e1da4e7)
-- キーコンフィグは0,1を入力して決定
 - キー配置はピアノと似たようなイメージ
-- exeファイルが /dist に
-- キーコンフィグを変更するにはPythonプログラムを書き換えてPython環境で実行
+- exeファイル => /dist 
+- キーコンフィグ(0:US,1:JP)
+- 音(0:normalモード,1:8ビットモード)
+- 動作モード(0:演奏モード,1:記録モード、2:リプレイモード)
