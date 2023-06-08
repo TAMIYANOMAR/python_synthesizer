@@ -15,7 +15,7 @@
 - リプレイモード
     - 利用可能ファイルが表示されるので数字で選択
 
-
+## Eng
 - Key layout is similar to a piano.
 - exe file
     - /dist
