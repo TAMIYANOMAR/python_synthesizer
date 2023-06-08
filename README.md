@@ -1,4 +1,5 @@
 # Python-Synthesizer-CLI
+##jp
 - キー配置はピアノと似たようなイメージ
 - exeファイル
     - /dist 
@@ -15,7 +16,7 @@
 - リプレイモード
     - 利用可能ファイルが表示されるので数字で選択
 
-## Eng
+## En
 - Key layout is similar to a piano.
 - exe file
     - /dist
