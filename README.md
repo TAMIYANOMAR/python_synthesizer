@@ -1,5 +1,5 @@
 # Python-Synthesizer-CLI
-##jp
+## jp
 - キー配置はピアノと似たようなイメージ
 - exeファイル
     - /dist 
