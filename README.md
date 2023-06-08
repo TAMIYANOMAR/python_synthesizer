@@ -32,4 +32,5 @@
     - Press 'e' to end the recording.
  - Replay mode
     - Available files will be displayed, select one by entering a number.
+## Playing Image
 ![image](https://github.com/TAMIYANOMAR/python_synthesizer/assets/59043309/3a6ed3fa-7fc8-4037-a6b5-223071f851b3)
